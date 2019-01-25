@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Globalization;
+using System.Text;
 
 namespace debugws2
 {
@@ -21,6 +22,12 @@ namespace debugws2
 
     private int cnv(string val)
     {
+      if (val.Contains("G")){
+        StringBuilder sb = new StringBuilder(val);
+        sb.Remove(4,1);
+        sb.Append("E");
+        val = sb.ToString();
+      }
       Int32.TryParse(val, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int value);
 
       return value;
